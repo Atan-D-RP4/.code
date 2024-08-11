@@ -15,8 +15,9 @@ int cmp(const void *a, const void *b) {
 
 int main() {
     srand(time(NULL));
+
     {
-        Nob_String_View *vec_sv = Vec(Nob_String_View, &my_allocator);
+        Nob_String_View *vec_sv = Vec(Nob_String_View);
 
         vec_append(vec_sv, nob_sv_from_cstr("Hello"));
         vec_append(vec_sv, nob_sv_from_cstr(" "));
@@ -34,7 +35,7 @@ int main() {
         vec_free(vec_sv);
     }
 
-    int *vec_int = Vec(int, &my_allocator);
+    int *vec_int = Vec(int);
     for (int i = 0; i < 10; i++) {
         vec_append(vec_int, (rand() % 100));
     }
@@ -110,10 +111,10 @@ int main() {
     vec_free(vec_int);
 
 	{
-		int **matrix = Vec(int*, &my_allocator);
-		vec_append(matrix, Vec(int, &my_allocator));
-		vec_append(matrix, Vec(int, &my_allocator));
-		vec_append(matrix, Vec(int, &my_allocator));
+		int **matrix = Vec(int*);
+		vec_append(matrix, Vec(int));
+		vec_append(matrix, Vec(int));
+		vec_append(matrix, Vec(int));
 
 		{ int *it = NULL;
 		vec_for_each(matrix, it) {
@@ -138,7 +139,7 @@ int main() {
 		}
 		vec_free(matrix); }
 
-		int *test = Vec(int, &my_allocator);
+		int *test = Vec(int);
 		for (int i = 0; i < 10; i++) {
 			vec_append(test, i);
 		}
@@ -149,6 +150,20 @@ int main() {
 		printf("\n");
 
 		vec_free(test);
+	}
+
+	{
+		printf("This should just work\n");
+		Nob_String_View *vec_sv = NULL;
+		vec_append(vec_sv, nob_sv_from_cstr("Hello"));
+		vec_append(vec_sv, nob_sv_from_cstr(" "));
+		vec_append(vec_sv, nob_sv_from_cstr("World"));
+
+		for (size_t i = 0; i < vec_length(vec_sv); i++) {
+			printf("%s", vec_sv[i].data);
+		}
+		printf("\n");
+		vec_free(vec_sv);
 	}
 
     return 0;

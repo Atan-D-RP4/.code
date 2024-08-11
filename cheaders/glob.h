@@ -36,9 +36,9 @@ Glob_Result glob_utf32(const uint32_t *pattern, const uint32_t *text);
 // HERE STARTS ConvertUTF CODE //////////////////////////////
 /*
  * Copyright 2001-2004 Unicode, Inc.
- * 
+ *
  * Disclaimer
- * 
+ *
  * This source code is provided as is by Unicode, Inc. No claims are
  * made as to fitness for any particular purpose. No warranties of any
  * kind are expressed or implied. The recipient agrees to determine
@@ -46,9 +46,9 @@ Glob_Result glob_utf32(const uint32_t *pattern, const uint32_t *text);
  * purchased on magnetic or optical media from Unicode, Inc., the
  * sole remedy for any claim will be exchange of defective media
  * within 90 days of receipt.
- * 
+ *
  * Limitations on Rights to Redistribute This Code
- * 
+ *
  * Unicode, Inc. hereby grants the right to freely use the information
  * supplied in this file in the creation of products supporting the
  * Unicode Standard, and to make copies of this file in any form
@@ -116,7 +116,7 @@ static const char trailingBytesForUTF8[256] = {
  * This table contains as many values as there might be trailing bytes
  * in a UTF-8 sequence.
  */
-static const UTF32 offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL, 
+static const UTF32 offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
 		     0x03C82080UL, 0xFA082080UL, 0x82082080UL };
 
 /*
@@ -156,7 +156,7 @@ static Boolean isLegalUTF8(const UTF8 *source, int length) {
 }
 
 ConversionResult ConvertUTF8toUTF32 (
-	const UTF8** sourceStart, const UTF8* sourceEnd, 
+	const UTF8** sourceStart, const UTF8* sourceEnd,
 	UTF32** targetStart, UTF32* targetEnd, ConversionFlags flags) {
     ConversionResult result = conversionOK;
     const UTF8* source = *sourceStart;
